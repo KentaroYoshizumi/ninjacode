@@ -1,0 +1,32 @@
+②文字列の値を受け取り、その値を数値に変換し、1からその数値まで足していった和を文字列の返り値として返す関数を作成しなさい
+
+def sum_numeric_string_from_one(numeric_string)
+  numeral = numeric_string.to_i
+
+  sum = 0
+  (1..numeral).each { |number| sum += number }
+
+  return sum
+end
+
+⑤文字を渡すと母音の数を計算して返す関数とそのテストを書きなさい
+
+require "test/unit"
+
+class Vowel
+  def self.count_vowels_number(letters)
+    arrayed_letter = letters.split(//)
+
+    arrayed_vowel = arrayed_letter.delete_if do |letter|
+      letter != "a" && letter != "i" && letter != "u" && letter != "e" && letter != "o"
+    end
+
+    arrayed_vowel.size
+  end
+end
+
+class TestSample < Test::Unit::TestCase
+  def test_count_vowels_number
+    assert_equal 4, Vowel.count_vowels_number("youtube")
+  end
+end
