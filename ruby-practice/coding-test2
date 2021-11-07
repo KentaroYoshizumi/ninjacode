@@ -1,0 +1,20 @@
+⑥1から9までの数字カードをプレイヤー全員に順番に配ります。第一引数にカードを配る人数を取り、第二引数に文字列にて配るカードの数字を取ります。返り値としてプレイヤーごとの配られたカードの中身を配列として返す関数を作成しなさい。例）第一引数が2、第二引数が'12345'の場合の実行結果：{'135', '24'}
+
+def deal_cards(players_number, cards)
+  arrayed_card = cards.split(//)
+  
+  two_d_array = arrayed_card.each_slice(players_number).map {|array| array }
+  
+  max_element_number = two_d_array.max_by { |array| array.size }.size
+  
+  adjusted_two_d_array = two_d_array.each do |array|
+    while array.size < max_element_number
+      array << nil
+    end
+  end
+  
+  adjusted_two_d_array.transpose.map do |array|
+    array.delete(nil) if array.include?(nil)
+    array.join    
+  end
+end
